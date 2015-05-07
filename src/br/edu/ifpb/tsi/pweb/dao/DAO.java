@@ -12,9 +12,7 @@ public abstract class DAO<T> implements DAOInterface<T>{
 	protected static EntityManager manager;
 
 	public DAO(){
-		
 		if(manager==null){			
-
 			EntityManagerFactory factory = 
 					Persistence.createEntityManagerFactory("calendario");
 				manager = factory.createEntityManager();
