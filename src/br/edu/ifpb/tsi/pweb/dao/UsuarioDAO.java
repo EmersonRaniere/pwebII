@@ -24,18 +24,22 @@ public class UsuarioDAO extends DAO<Usuario>{
 	}
   
   	public Boolean updatePassword(String oldpass, String newpass, String email){
-  		if ((oldpass != null) && (newpass != null) && (email != null)){
+  		if (oldpass != null && newpass != null && email != null){
   			Query q = manager.createQuery("UPDATE Usuario u SET u.password = :newpass WHERE ( u.email = :email AND u.password = :oldpass)");
   			q.setParameter("email", email);
   			q.setParameter("oldpass", oldpass);
   			q.setParameter("newpass", newpass);
-  			int verifyWorked = q.executeUpdate();
-  			System.out.println(verifyWorked);
+  			try {
+  				int verifyWorked = (int) q.executeUpdate();
+  				System.out.println(verifyWorked);
   				if (verifyWorked != 0) {
   					return true;
   				}else {
   					return false;
   				}
+			} catch (Exception e) {
+				return false;
+			}
   		}
   		return false;
   	}
