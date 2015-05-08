@@ -43,6 +43,6 @@
     	</c:otherwise> 
    	</c:choose>
    	<!-- End of verify sessionScope User -->
-	<script type="text/javascript" src="<c:url value="${pageContext.request.contextPath}/js/default.js" />"></script>
+	<script type="text/javascript" src="<c:url value="./js/default.js" />"></script>
 </body>
 </html>
