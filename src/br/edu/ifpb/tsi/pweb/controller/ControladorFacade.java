@@ -6,12 +6,9 @@ import br.edu.ifpb.tsi.pweb.dao.DAO;
 import br.edu.ifpb.tsi.pweb.dao.UsuarioDAO;
 import br.edu.ifpb.tsi.pweb.model.Usuario;
 
-public class ControladorFacade
-{
-  private UsuarioDAO uDao = new UsuarioDAO();
-  
-  public void usuarioList() {}
-  
+public class ControladorFacade{
+	private UsuarioDAO uDao = new UsuarioDAO();
+    
   	public Usuario usuarioLogar(String email, String senha){
 	    if(!(email.equals(null) && senha.equals(null))){
 	    	DAO.begin();
@@ -61,7 +58,18 @@ public class ControladorFacade
   		return false;
   	}
   
-  public void usuarioDelete() {}
+	public Boolean usuarioDeletar(Usuario userErase) {
+		System.out.println("passouaqui1");
+		if ((userErase != null) && ( !userErase.getIsAdmin() ) ){
+			System.out.println("passouaqui2");
+  			DAO.begin();
+  			uDao.deleteByUserEmail(userErase);
+  			DAO.commit();
+  			return true;
+  		}
+		return false;
+	}
+		  
   
   public void usuarioLoggedAddAnnotation() {}
   

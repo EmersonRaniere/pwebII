@@ -16,9 +16,7 @@ import br.edu.ifpb.tsi.pweb.model.Usuario;
 public class FrontController  extends HttpServlet{
 
 	ControladorFacade cf = new ControladorFacade();
-	Usuario u = new Usuario();
   
-	@SuppressWarnings("unused")
 	private void doRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 	    String op = request.getParameter("acao");
 		
@@ -27,7 +25,7 @@ public class FrontController  extends HttpServlet{
 			String email = request.getParameter("email");
 	        String senha = request.getParameter("senha");
 	        
-	        u = cf.usuarioLogar(email, senha);
+	        Usuario u = cf.usuarioLogar(email, senha);
 	        if (u != null){
 	        	request.setAttribute("logado", true);
 	        	request.getSession().setAttribute("user", u);
@@ -75,6 +73,7 @@ public class FrontController  extends HttpServlet{
 			newUser.setEmail(newUserEmail);
 			newUser.setPassword(newUserPass);
 			newUser.setIsAdmin(false);
+			
 			Boolean verifyCadastro = null;
 			verifyCadastro = cf.usuarioCreate(newUser);
 			if (verifyCadastro){
@@ -91,19 +90,39 @@ public class FrontController  extends HttpServlet{
 			
 		break;
 		
-		case "deletarusuario":{
-		
+		case "deletarusuario":
+			System.out.println("passouaqui3");
+			Usuario userErase = (Usuario) request.getSession().getAttribute("user");
+			Boolean verifyUserDelete = null;
+			System.out.println("passouaqui4");
+			verifyUserDelete = cf.usuarioDeletar(userErase);
+			System.out.println("passouaqui5");
+			if (verifyUserDelete){
+				System.out.println("passouaqui6");
+				request.removeAttribute("logado");
+				request.removeAttribute("alterado");
+				request.removeAttribute("cadastradousuario");
+				request.setAttribute("deletarusuario", true);
+	        	request.getSession().invalidate();
+	        	request.getRequestDispatcher("index.jsp").forward(request, response);
+	        	System.out.println("Usuario deletado com sucesso, dispachou para index.jsp");
+	        }else{
+	        	System.out.println("passouaqui7");
+	        	System.out.println("Não conseguiu deletar usuario");
+	        }
+	        System.out.println("Concluida a operacao deletar usuario");
 			
 		break;
-		}
+		
 	
 		default:
-			break;
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
   }
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	  doRequest(request, response);
+	  
   }
   
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

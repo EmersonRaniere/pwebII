@@ -5,6 +5,9 @@ import javax.persistence.Query;
 import br.edu.ifpb.tsi.pweb.model.Usuario;
 
 public class UsuarioDAO extends DAO<Usuario>{
+	public UsuarioDAO(){
+		
+	}
 	public Usuario findByCredentials(String email, String senha){
 		Query q = manager.createQuery("SELECT u FROM Usuario u WHERE u.email = :email AND u.password = :senha");
 		q.setParameter("email", email);
@@ -44,4 +47,26 @@ public class UsuarioDAO extends DAO<Usuario>{
   		}
   		return false;
   	}
+  	
+  	public Boolean deleteByUserEmail (Usuario user){
+  		if(user != null){
+  			String email = user.getEmail();
+  			Query q = manager.createQuery("DELETE Usuario u WHERE u.email = :email");
+  				q.setParameter("email", email);
+  				try {
+  	  				int verifyWorked = (int) q.executeUpdate();
+  	  				System.out.println(verifyWorked);
+  	  				if (verifyWorked != 0) {
+  	  					return true;
+  	  				}else {
+  	  					return false;
+  	  				}
+  				} catch (Exception e) {
+  					return false;
+  				}
+  	  		}
+  	  		return false;
+  		}
+  		
+  	
 }

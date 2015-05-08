@@ -26,7 +26,10 @@
 		</c:when>
 		<c:when test="${ cadastradousuario eq true }">
 			<m:alert type="success">Usuario cadastrado com sucesso!</m:alert>
-		</c:when>  
+		</c:when>
+		 <c:when test="${ deletarusuario eq true }">
+			<m:alert type="success">Usuario deletado com sucesso!</m:alert>
+		</c:when>
 		<c:otherwise>  
 		</c:otherwise> 
 	</c:choose>
