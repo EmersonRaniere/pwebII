@@ -7,10 +7,10 @@
 	</c:when> 
 	<c:otherwise>  
 		<c:if test="${ error eq true }">
-			<m:alert type="danger">Erro ao cadastrar o usuário.</m:alert>
+			<m:alert type="danger">Erro ao cadastrar o usuário ou email cadastrado já existe.</m:alert>
 		</c:if>
 		<div class="container" style="width:700px;">
-			<form class="form-signin" method="post" action=${pageContext.request.contextPath}"/controller.do">
+			<form class="form-signin" method="post" action="${pageContext.request.contextPath}/controller.do">
 				<input type="hidden" name="acao" value="cadastrarusuario">
 				<h2 class="form-signin-heading">Cadastrar no sistema</h2>
 				<input name="nome" type="text" id="inputNome" class="form-control" placeholder="Nome" required autofocus>
@@ -21,7 +21,7 @@
 					</div>
 			</form>
 		</div>
-		<script type="text/javascript" src="<c:url value="${pageContext.request.contextPath}/js/default.js" />"></script>
+		<script type="text/javascript" src="<c:url value="./js/default.js" />"></script>
 	</c:otherwise> 
 </c:choose>
 </body>
