@@ -1,6 +1,7 @@
 package br.edu.ifpb.tsi.pweb.dao;
 
 import javax.persistence.Query;
+
 import br.edu.ifpb.tsi.pweb.model.Usuario;
 
 public class UsuarioDAO extends DAO<Usuario>{
