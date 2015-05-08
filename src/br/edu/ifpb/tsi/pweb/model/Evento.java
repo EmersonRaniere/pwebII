@@ -21,6 +21,8 @@ public class Evento {
 	
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Usuario usuario;
+	@Column(length = 20)
+	private String titulo;
 	@Column(length = 50)
 	private String descricao;
 	@Temporal (TemporalType.DATE)
@@ -29,6 +31,7 @@ public class Evento {
 	public Evento(){}// Construtor Vazio
 
 	public Evento(String descricao, Date data, Usuario usuario) {
+		this.titulo = titulo;
 		this.descricao = descricao;
 		this.data = data;
 		this.usuario = usuario;
@@ -39,6 +42,10 @@ public class Evento {
 		return id;
 	}
 
+	public String getTitulo() {
+		return titulo;
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
@@ -57,6 +64,10 @@ public class Evento {
 		this.id = id;
 	}
 
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
