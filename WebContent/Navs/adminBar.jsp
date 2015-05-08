@@ -12,7 +12,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
         		<li><a href="<c:url value='/admin/alterarsenha.jsp'/>">Alterar Senha</a></li>
-        		<li><a href="<c:url value='/controller.do?op=logout'/>">Logout</a></li>
+        		<li><a href="<c:url value='/controller.do?acao=logout'/>">Logout</a></li>
       		</ul>
 		</div> 
 	</div> 

@@ -9,18 +9,24 @@
 		        <form class="navbar-form navbar-right" method="post" action="login.jsp">
 		       		<button type="submit" class="btn btn-success">Entrar</button>
 		        </form>
+		        <form class="navbar-form navbar-right" method="post" action="cadastrar.jsp">
+		       		<button type="submit" class="btn btn-success">Cadastrar</button>
+		        </form>
       			</div>
 			</c:if>
 		</div>
     </nav>
     <!-- Verify success results -->
     <c:choose>
-		<c:when test="${ cadastrado eq true }">
-			<m:alert type="success">Usuário logado com sucesso</m:alert>
+		<c:when test="${ logado eq true }">
+			<m:alert type="success">Usuário logado com sucesso!</m:alert>
 		</c:when> 
 		<c:when test="${ alterado eq true }">
-			<m:alert type="success">Senha alterada com sucesso</m:alert>
-		</c:when> 
+			<m:alert type="success">Senha alterada com sucesso!</m:alert>
+		</c:when>
+		<c:when test="${ cadastradousuario eq true }">
+			<m:alert type="success">Usuario cadastrado com sucesso!</m:alert>
+		</c:when>  
 		<c:otherwise>  
 		</c:otherwise> 
 	</c:choose>

@@ -1,7 +1,7 @@
 	<%@ include file="Assets/header.jsp" %>
 	<%@ include file="Navs/indexBar.jsp" %>
 	<div class="container" style="width:700px;">
-		<form class="form-signin" method="post" action="controller.do">
+		<form class="form-signin" method="post" action="${pageContext.request.contextPath}/controller.do">
 			<input type="hidden" name="acao" value="cadastrarusuario">
 			<h2 class="form-signin-heading">Cadastrar no sistema</h2>
 			<input name="nome" type="text" id="inputNome" class="form-control" placeholder="Nome" required autofocus>

@@ -18,6 +18,7 @@ public class FrontController  extends HttpServlet{
 	ControladorFacade cf = new ControladorFacade();
 	Usuario u = new Usuario();
   
+	@SuppressWarnings("unused")
 	private void doRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 	    String op = request.getParameter("acao");
 		
@@ -28,8 +29,8 @@ public class FrontController  extends HttpServlet{
 	        
 	        u = cf.usuarioLogar(email, senha);
 	        if (u != null){
-	        	request.setAttribute("cadastrado", true);
-	        	request.getSession().setAttribute("user", this.u);
+	        	request.setAttribute("logado", true);
+	        	request.getSession().setAttribute("user", u);
 	        	request.getRequestDispatcher("index.jsp").forward(request, response);
 	        	System.out.println("Setou sessão, dispachou para index.jsp");
 	        }else{
@@ -39,10 +40,12 @@ public class FrontController  extends HttpServlet{
 	        }
 	        System.out.println("Concluida a operacao logar");
 		break;
+		
 		case "logout":
 			request.getSession().removeAttribute("user");
 	        response.sendRedirect("index.jsp");
 		break;
+		
 		case "alterarsenha":
 	        String oldpassword = request.getParameter("oldpassword");
 	        String newpassword = request.getParameter("newpassword");
@@ -61,10 +64,33 @@ public class FrontController  extends HttpServlet{
 	        }
 	        System.out.println("Concluida a operação de alterar senha.");
 		break;
+		
 		case "cadastrarusuario":
-			System.out.println("Chegou aqui2!");
-	        response.sendRedirect("index.jsp");
+			String newUserName = request.getParameter("nome");
+			String newUseremail = request.getParameter("email");
+			String newUserpass = request.getParameter("password");
+			
+			Usuario newUser = new Usuario(newUserName, newUseremail, newUserpass, false);
+			cf.usuarioCreate(newUser);
+			if (newUser != null){
+	        	request.setAttribute("cadastradousuario", true);
+	        	request.getSession().setAttribute("user", newUser);
+	        	request.getRequestDispatcher("index.jsp").forward(request, response);
+	        	System.out.println("Usuario criado com sucesso, dispachou para index.jsp");
+	        }else{
+	        	request.setAttribute("error", true);
+	        	request.getRequestDispatcher("cadastrar.jsp").forward(request, response);
+	        	System.out.println("Não conseguiu cadastrar usuario, setando atributo error, redirecionando para index.jsp");
+	        }
+	        System.out.println("Concluida a operacao cadastrar");
+			
 		break;
+		
+		case "deletarusuario":{
+		
+			
+		break;
+		}
 	
 		default:
 			break;

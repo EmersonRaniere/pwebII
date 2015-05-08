@@ -11,36 +11,46 @@ public class ControladorFacade
   public void usuarioList() {}
   
   	public Usuario usuarioLogar(String email, String senha){
-	    DAO.begin();
-	    Usuario u = uDao.findByCredentials(email, senha);
-	    System.out.println("passou por findbyCredentials");
-	    if (u != null){
-	    	System.out.println("u != null");
-	    	DAO.commit();
-	    	return u;
-	    }else{
-	    	System.out.println("u == null");
-	    	return null;
+	    if(email.equals(null) && senha.equals(null)){
+	    	DAO.begin();
+		    Usuario u = uDao.findByCredentials(email, senha);
+		    System.out.println("passou por findbyCredentials");
+		    if (u != null){
+		    	System.out.println("u != null");
+		    	DAO.commit();
+		    	return u;
+		    }else{
+		    	System.out.println("u == null");
+		    	return null;
+		    }
 	    }
+	    return null;
 	}
   
   	public Boolean usuarioTrocarSenha(String oldpass, String newpass, String email){
-  		DAO.begin();
-	    if (uDao.updatePassword(oldpass, newpass, email)){
-	    	DAO.commit();
-	    	return true;
-	    }else{
-	    	return false;
-	    }
+  		if(oldpass.equals(null) && newpass.equals(null) && email.equals(null)){
+  			DAO.begin();
+  		    if (uDao.updatePassword(oldpass, newpass, email)){
+  		    	DAO.commit();
+  		    	return true;
+  		    }else{
+  		    	return false;
+  		    }
+  		}
+  		return null;
   	}
   	public Boolean usuarioCreate(Usuario newUser){
-  		DAO.begin();
-  		try {
-			uDao.create(newUser);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
+  		if (newUser != null){
+  			DAO.begin();
+  	  		try {
+  				uDao.create(newUser);
+  				DAO.commit();
+  				return true;
+  			} catch (Exception e) {
+  				return false;
+  			}
+  		}
+  		return false;
   	}
   
   public void usuarioDelete() {}
