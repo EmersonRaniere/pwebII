@@ -1,4 +1,4 @@
-<%String contextPath1 = request.getContextPath();%>
-<script type="text/javascript" src="<%=contextPath1 %>/js/default.js" /></script>
+
+<script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/default.js" /></script>
 </body>
 </html>

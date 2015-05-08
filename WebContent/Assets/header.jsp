@@ -18,15 +18,11 @@
 		<script	src="${pageContext.request.contextPath}/bootstrap-3.3.4-dist/js/bootstrap.js"></script>
 		<script	src="${pageContext.request.contextPath}/bootstrap-3.3.4-dist/js/jquery-1.11.3.min.js"></script>
 		
-		<%
-		String contextPath = request.getContextPath();
-		%>
-		
-		<link href='<%=contextPath %>/css/fullcalendar.css' rel='stylesheet' />
-		<link href='<%=contextPath %>/css/fullcalendar.print.css' rel='stylesheet' media='print' />
-		<script src='<%=contextPath %>/js/moment.min.js'></script>
-		<script src='<%=contextPath %>/js/jquery.min.js'></script>
-		<script src='<%=contextPath %>/js/fullcalendar.min.js'></script>
+		<link href='${pageContext.servletContext.contextPath}/css/fullcalendar.css' rel='stylesheet' />
+		<link href='${pageContext.servletContext.contextPath}/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+		<script src='${pageContext.servletContext.contextPath}/js/moment.min.js'></script>
+		<script src='${pageContext.servletContext.contextPath}/js/jquery.min.js'></script>
+		<script src='${pageContext.servletContext.contextPath}/js/fullcalendar.min.js'></script>
 		<script>
 	
 		$(document).ready(function() {
@@ -36,7 +32,7 @@
 				editable: true,
 				eventLimit: true, // allow "more" link when too many events
 				events:
-					
+					[
 	// INSERIR OS EVENTOS AQUI
 					{
 						title: 'All Day Event',
