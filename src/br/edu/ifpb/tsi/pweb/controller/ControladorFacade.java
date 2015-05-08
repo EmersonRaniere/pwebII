@@ -25,12 +25,22 @@ public class ControladorFacade
 	}
   
   	public Boolean usuarioTrocarSenha(String oldpass, String newpass, String email){
+  		DAO.begin();
 	    if (uDao.updatePassword(oldpass, newpass, email)){
 	    	DAO.commit();
 	    	return true;
 	    }else{
 	    	return false;
 	    }
+  	}
+  	public Boolean usuarioCreate(Usuario newUser){
+  		DAO.begin();
+  		try {
+			uDao.create(newUser);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
   	}
   
   public void usuarioDelete() {}
