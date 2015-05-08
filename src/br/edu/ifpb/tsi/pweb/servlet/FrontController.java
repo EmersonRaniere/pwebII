@@ -67,12 +67,17 @@ public class FrontController  extends HttpServlet{
 		
 		case "cadastrarusuario":
 			String newUserName = request.getParameter("nome");
-			String newUseremail = request.getParameter("email");
-			String newUserpass = request.getParameter("password");
+			String newUserEmail = request.getParameter("email");
+			String newUserPass = request.getParameter("password");
 			
-			Usuario newUser = new Usuario(newUserName, newUseremail, newUserpass, false);
-			cf.usuarioCreate(newUser);
-			if (newUser != null){
+			Usuario newUser = new Usuario();
+			newUser.setNome(newUserName);
+			newUser.setEmail(newUserEmail);
+			newUser.setPassword(newUserPass);
+			newUser.setIsAdmin(false);
+			Boolean verifyCadastro = null;
+			verifyCadastro = cf.usuarioCreate(newUser);
+			if (verifyCadastro){
 	        	request.setAttribute("cadastradousuario", true);
 	        	request.getSession().setAttribute("user", newUser);
 	        	request.getRequestDispatcher("index.jsp").forward(request, response);
