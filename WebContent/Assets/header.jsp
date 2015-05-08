@@ -13,11 +13,10 @@
 		
 		<title>Calendário - PwebII</title>
 
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/default.css">
-		<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/bootstrap-3.3.4-dist/css/bootstrap.css">
-		<script	src="${pageContext.request.contextPath}/bootstrap-3.3.4-dist/js/bootstrap.js"></script>
-		<script	src="${pageContext.request.contextPath}/bootstrap-3.3.4-dist/js/jquery-1.11.3.min.js"></script>
-		
+		<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/css/default.css">
+		<link rel="stylesheet" type="text/css"	href="${pageContext.servletContext.contextPath}/bootstrap-3.3.4-dist/css/bootstrap.css">
+		<script	src="${pageContext.servletContext.contextPath}/bootstrap-3.3.4-dist/js/bootstrap.js"></script>
+		<script	src="${pageContext.servletContext.contextPath}/bootstrap-3.3.4-dist/js/jquery-1.11.3.min.js"></script>
 		<link href='${pageContext.servletContext.contextPath}/css/fullcalendar.css' rel='stylesheet' />
 		<link href='${pageContext.servletContext.contextPath}/css/fullcalendar.print.css' rel='stylesheet' media='print' />
 		<script src='${pageContext.servletContext.contextPath}/js/moment.min.js'></script>
@@ -94,22 +93,7 @@
 		});
 	
 		</script>
-		<style>
-	
-		body {
-			margin: 40px 10px;
-			padding: 0;
-			font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-			font-size: 14px;
-		}
-	
-		#calendar {
-			max-width: 900px;
-			margin: 0 auto;
-			padding-top: 2em;
-		}
-	
-		</style>
+
 		
 		
 	</head>

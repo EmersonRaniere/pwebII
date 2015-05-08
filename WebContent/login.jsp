@@ -21,7 +21,7 @@
 				</div>
 			</form>
 		</div>
-		<script type="text/javascript" src="<c:url value="${pageContext.request.contextPath}/js/default.js" />"></script>
+		<script type="text/javascript" src="<c:url value="${pageContext.servletContext.contextPath}/js/default.js" />"></script>
 	</c:otherwise> 
 </c:choose>
 </body>

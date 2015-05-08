@@ -9,7 +9,7 @@
 			<%@ include file="../Navs/adminBar.jsp"%>
 			
 			<div class="container" style="width: 700px;">
-				<form class="form-signin" method="post" action="${pageContext.request.contextPath}/controller.do">
+				<form class="form-signin" method="post" action="${pageContext.servletContext.contextPath}/controller.do">
 					<input type="hidden" name="acao" value="alterarsenha">
 					<h2 class="form-signin-heading">Alterar senha</h2>
 					<input name="oldpassword" type="password" id="inputOldPassword" class="form-control" placeholder="Senha Antiga" required>
@@ -21,11 +21,10 @@
 			</div>
 		</c:when>
 		<c:otherwise>
-			<c:redirect url="../index.jsp" />
+			<c:redirect url="${pageContext.servletContext.contextPath}/index.jsp" />
 		</c:otherwise>
 	</c:choose>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/default.js"></script>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/default.js"></script>
 </body>
 </html>
-
 
