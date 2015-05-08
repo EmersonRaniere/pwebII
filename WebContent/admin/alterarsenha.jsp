@@ -1,5 +1,5 @@
 	<%@ include file="../Assets/header.jsp" %>
-	
+	<% %>
 	<c:choose>
 		<c:when test="${sessionScope.user != null and sessionScope.user.isAdmin eq true}">
 			<%@ include file="../Navs/indexBar.jsp"%>
@@ -21,7 +21,11 @@
 			</div>
 		</c:when>
 		<c:otherwise>
-			<c:redirect url="${pageContext.servletContext.contextPath}/index.jsp" />
+			<c:if test="${sessionScope.user.isAdmin eq false }">
+				<c:redirect url="/index.jsp" />
+			</c:if>
+			<c:redirect url="${pageContext.request.contextPath}/index.jsp" />
+			
 		</c:otherwise>
 	</c:choose>
 	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/default.js"></script>

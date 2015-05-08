@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Evento {
+public class Nota {
 
 	@Id
 	@GeneratedValue
@@ -26,9 +26,9 @@ public class Evento {
 	@Temporal (TemporalType.DATE)
 	private Date data;
 	
-	public Evento(){}// Construtor Vazio
+	public Nota(){}// Construtor Vazio
 
-	public Evento(String descricao, Date data, Usuario usuario) {
+	public Nota(String descricao, Date data, Usuario usuario) {
 		this.descricao = descricao;
 		this.data = data;
 		this.usuario = usuario;

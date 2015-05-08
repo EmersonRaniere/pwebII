@@ -2,6 +2,7 @@ package br.edu.ifpb.tsi.pweb.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.edu.ifpb.tsi.pweb.controller.ControladorFacade;
+import br.edu.ifpb.tsi.pweb.dao.DAO;
+import br.edu.ifpb.tsi.pweb.dao.FeriadoDAO;
+import br.edu.ifpb.tsi.pweb.dao.NotaDAO;
+import br.edu.ifpb.tsi.pweb.dao.UsuarioDAO;
 import br.edu.ifpb.tsi.pweb.model.Usuario;
 
 @SuppressWarnings("serial")
@@ -16,7 +21,10 @@ import br.edu.ifpb.tsi.pweb.model.Usuario;
 public class FrontController  extends HttpServlet{
 
 	ControladorFacade cf = new ControladorFacade();
-  
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		criarAdmin();
+	}
 	private void doRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 	    String op = request.getParameter("acao");
 		
@@ -40,7 +48,7 @@ public class FrontController  extends HttpServlet{
 		break;
 		
 		case "logout":
-			request.getSession().removeAttribute("user");
+			request.getSession().invalidate();
 	        response.sendRedirect("index.jsp");
 		break;
 		
@@ -122,10 +130,27 @@ public class FrontController  extends HttpServlet{
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	  doRequest(request, response);
-	  
   }
   
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	  doRequest(request, response);
   }
+  private void criarAdmin() {
+	  UsuarioDAO uDao = new UsuarioDAO();
+	  
+	  Usuario u = new Usuario();
+	  u.setEmail("contato@admin.com");
+	  u.setNome("Administrador");
+	  u.setPassword("123");
+	  u.setIsAdmin(true);
+		  if(uDao.findByCredentials(u.getEmail(), u.getPassword()) != null){
+			  System.out.println("ADMIN != null");
+		  }else{
+			  System.out.println("ADMIN == null");
+			  DAO.begin();
+			  uDao.create(u);
+			  DAO.commit();
+		  }
+  }
+
 }
