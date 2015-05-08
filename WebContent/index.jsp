@@ -43,6 +43,7 @@
     	</c:otherwise> 
    	</c:choose>
    	<!-- End of verify sessionScope User -->
-	<script type="text/javascript" src="<c:url value="./js/default.js" />"></script>
-</body>
-</html>
+   	
+   	<div id='calendar'></div>
+   	
+	<%@ include file="Assets/footer.jsp"%>
