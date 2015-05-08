@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class Usuario {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column(length = 50)
 	private String nome;
@@ -19,13 +19,6 @@ public class Usuario {
 	private String password;
 	@Column(length = 1)
 	private Boolean isAdmin;
-	
-	public Usuario(String nome, String email, String password, Boolean isAdmin) {
-		this.nome = nome;
-		this.email = email;
-		this.password = password;
-		this.isAdmin = isAdmin;
-	}
 	
 	public Usuario() {
 	}
